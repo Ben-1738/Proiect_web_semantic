@@ -1,0 +1,14 @@
+{
+  "models": [
+    { "id": "1", "nume": "Seria 3", "brandId": "1", "tipCombustibil": "benzina", "capacitateMotor": 1998, "putereCP": 184, "anFabricatie": 2021 },
+    { "id": "2", "nume": "Seria 5", "brandId": "1", "tipCombustibil": "diesel", "capacitateMotor": 2993, "putereCP": 265, "anFabricatie": 2022 },
+    { "id": "3", "nume": "iX3", "brandId": "1", "tipCombustibil": "electric", "capacitateMotor": 0, "putereCP": 286, "anFabricatie": 2023 },
+    { "id": "4", "nume": "Corolla", "brandId": "2", "tipCombustibil": "hibrid", "capacitateMotor": 1798, "putereCP": 122, "anFabricatie": 2022 },
+    { "id": "5", "nume": "Yaris", "brandId": "2", "tipCombustibil": "hibrid", "capacitateMotor": 1490, "putereCP": 116, "anFabricatie": 2021 },
+    { "id": "6", "nume": "Land Cruiser", "brandId": "2", "tipCombustibil": "diesel", "capacitateMotor": 2755, "putereCP": 204, "anFabricatie": 2023 },
+    { "id": "7", "nume": "Clio", "brandId": "3", "tipCombustibil": "benzina", "capacitateMotor": 999, "putereCP": 90, "anFabricatie": 2021 },
+    { "id": "8", "nume": "Megane E-Tech", "brandId": "3", "tipCombustibil": "electric", "capacitateMotor": 0, "putereCP": 218, "anFabricatie": 2022 },
+    { "id": "9", "nume": "Mustang Mach-E", "brandId": "4", "tipCombustibil": "electric", "capacitateMotor": 0, "putereCP": 294, "anFabricatie": 2023 },
+    { "id": "10", "nume": "Golf", "brandId": "5", "tipCombustibil": "benzina", "capacitateMotor": 1498, "putereCP": 130, "anFabricatie": 2021 }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "brands": [
+    { "id": "1", "nume": "BMW", "tara": "Germania", "anInfiintare": 1916, "sediu": "München" },
+    { "id": "2", "nume": "Toyota", "tara": "Japonia", "anInfiintare": 1937, "sediu": "Toyota City" },
+    { "id": "3", "nume": "Renault", "tara": "Franta", "anInfiintare": 1899, "sediu": "Boulogne-Billancourt" },
+    { "id": "4", "nume": "Ford", "tara": "SUA", "anInfiintare": 1903, "sediu": "Dearborn" },
+    { "id": "5", "nume": "Volkswagen", "tara": "Germania", "anInfiintare": 1937, "sediu": "Wolfsburg" }
+  ]
+}

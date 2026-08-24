@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestiune Mașini</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .input-area { display: flex; gap: 10px; margin: 20px 0; }
+        input[type="text"] { flex: 1; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px 20px; font-size: 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:disabled { background: #aaa; }
+        #response-box { border: 1px solid #ddd; border-radius: 4px; padding: 16px; min-height: 80px; background: #f9f9f9; white-space: pre-wrap; }
+        .error { color: red; font-weight: bold; }
+        .example-btn { background: none; border: 1px solid #007bff; color: #007bff; padding: 4px 10px; font-size: 13px; margin: 3px; cursor: pointer; border-radius: 3px; }
+    </style>
+</head>
+<body>
+<h1>Gestiune Mașini</h1>
+
+<div>
+    <strong>Exemple:</strong><br>
+    <button class="example-btn" onclick="document.getElementById('query-input').value=this.textContent">Arată brandurile din Germania</button>
+    <button class="example-btn" onclick="document.getElementById('query-input').value=this.textContent">Arată modelele electrice</button>
+    <button class="example-btn" onclick="document.getElementById('query-input').value=this.textContent">Arată mașinile BMW din RDF</button>
+</div>
+
+<div class="input-area">
+    <input type="text" id="query-input" placeholder="Scrie cererea ta..." />
+    <button id="send-btn" onclick="sendQuery()">Trimite</button>
+</div>
+
+<div id="response-box">Răspunsul va apărea aici...</div>
+
+<script>
+    // test imediat la incarcare pagina
+    console.log("=== Frontend incarcat ===");
+    console.log("MCP Client URL: http://localhost:8081/query");
+
+    // verifica daca butonul exista
+    const btn = document.getElementById('send-btn');
+    const input = document.getElementById('query-input');
+    const box = document.getElementById('response-box');
+    console.log("Buton gasit:", btn !== null);
+    console.log("Input gasit:", input !== null);
+
+    async function sendQuery() {
+        console.log("--- sendQuery() apelat ---");
+
+        const query = input.value.trim();
+        console.log("Query:", query);
+
+        if (!query) {
+            box.textContent = "Scrie ceva in campul de text!";
+            return;
+        }
+
+        btn.disabled = true;
+        box.className = "";
+        box.textContent = "Se procesează...";
+
+        const payload = JSON.stringify({ query: query });
+        console.log("Trimit la backend:", payload);
+
+        try {
+            const response = await fetch("http://localhost:8081/query", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: payload
+            });
+
+            console.log("Status HTTP:", response.status);
+
+            const data = await response.json();
+            console.log("Raspuns primit:", data);
+
+            if (data.error) {
+                box.className = "error";
+                box.textContent = "Eroare: " + data.error;
+            } else {
+                box.textContent = data.response;
+            }
+
+        } catch (err) {
+            console.error("Eroare fetch:", err);
+            box.className = "error";
+            box.textContent = "Eroare de conectare: " + err.message +
+                "\n\nVerifica:\n1. MCP Client pornit pe portul 8081?\n2. MCP Server pornit pe portul 8082?\n3. Consola F12 pentru detalii";
+        } finally {
+            btn.disabled = false;
+        }
+    }
+
+    input.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") sendQuery();
+    });
+</script>
+</body>
+</html>
